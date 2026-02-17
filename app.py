@@ -42,12 +42,11 @@ def check_ssl(host):
 
 def get_whois_info(domain):
     try:
-        info = whois.whois(domain)
         return {
-            "domain_name": info.domain_name,
-            "registrar": info.registrar,
-            "creation_date": info.creation_date,
-            "expiry_date": info.expiration_date
+            "domain_name": domain,
+            "registrar": "Data unavailable on cloud",
+            "creation_date": "N/A",
+            "expiry_date": "N/A"
         }
     except:
         return {"error": "WHOIS not available"}
@@ -89,4 +88,5 @@ def index():
     return render_template("index.html")
 
 if __name__ == "__main__":
+
     app.run(debug=True)
