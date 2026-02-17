@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scan Results</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<h2>Results for {{ url }}</h2>
+
+<h3>Open Ports:</h3>
+<ul>
+{% for port in open_ports %}
+<li>{{ port }}</li>
+{% endfor %}
+</ul>
+
+<h3>Missing Headers:</h3>
+<ul>
+{% for header in missing_headers %}
+<li>{{ header }}</li>
+{% endfor %}
+</ul>
+
+<h3>SSL Status:</h3>
+<p>{{ ssl_status }}</p>
+
+<h3>WHOIS Info:</h3>
+{% if whois_data.error %}
+<p>{{ whois_data.error }}</p>
+{% else %}
+<p>Domain: {{ whois_data.domain_name }}</p>
+<p>Registrar: {{ whois_data.registrar }}</p>
+<p>Creation Date: {{ whois_data.creation_date }}</p>
+<p>Expiry Date: {{ whois_data.expiry_date }}</p>
+{% endif %}
+
+<h3>Risk Level: {{ risk }}</h3>
+
+<a href="/">Scan Again</a>
+</body>
+</html>
